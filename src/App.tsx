@@ -21,8 +21,8 @@ function App() {
     new Promise<Blob>((resolve) => {
       Resizer.imageFileResizer(
         file,
-        150, // 최댓값
-        150, // 최솟값
+        300, // 최댓값
+        300, // 최솟값
         "JPEG",
         50,
         0,
@@ -50,36 +50,24 @@ function App() {
   };
   return (
     <>
-      <>
-        <h1>react Resizer 로 파일 용량, 이미지 줄이기</h1>
-        <input type="file" onChange={onChange} />
-        <div>
-          <h2>미리보기 이미지</h2>
-          {url && <img width={350} height={350} src={url} alt="123" />}
-        </div>
-        <p>원본 이미지 사이즈 : {prevImg}</p>
-        <p>압축된 이미지 사이즈 : {nextImg}</p>
+      <h1>react Resizer 로 파일 용량, 이미지 줄이기</h1>
+      <input type="file" onChange={onChange} />
+      <div>
+        <h2>미리보기 이미지</h2>
+        {url && <img width={350} height={350} src={url} alt="미리보기 이미지" />}
+      </div>
+      <p>원본 이미지 사이즈 : {prevImg}</p>
+      <p>압축된 이미지 사이즈 : {nextImg}</p>
 
-        {/* quality */}
+      {/* quality */}
+      <div>
+        <h2>Quality control</h2>
+        <button onClick={increseQuality}>+</button>
+        <button onClick={decreseQuality}>-</button>
         <div>
-          <h2>Quality control</h2>
-          <button onClick={increseQuality}>+</button>
-          <button onClick={decreseQuality}>-</button>
-          <div>
-            <progress value={quality} max="100" /> <span>{quality}</span>
-          </div>
+          <progress value={quality} max="100" /> <span>{quality}</span>
         </div>
-
-        {/* quality */}
-        <div>
-          <h2>Max width, height</h2>
-          <button onClick={increseQuality}>+</button>
-          <button onClick={decreseQuality}>-</button>
-          <div>
-            <progress value={quality} max="100" /> <span>{quality}</span>
-          </div>
-        </div>
-      </>
+      </div>
     </>
   );
 }
